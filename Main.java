@@ -8,7 +8,7 @@ import algorithms.sortAlgorithms;
 public class Main {
     public static void main(String[] args) {
 
-        List<Product> products = CSVLoader.loadProducts("data/products.csv");
+        List<Product> products = CSVLoader.loadProducts("data/productsLarge.csv");
 
         // long start = System.nanoTime();
         // Product found = searchAlgorithms.linearSearch(products, "SKU123");
