@@ -10,15 +10,15 @@ public class Main {
 
         List<Product> products = CSVLoader.loadProducts("data/products.csv");
 
-        long start = System.nanoTime();
-        Product found = searchAlgorithms.linearSearch(products, "SKU123");
-        long end = System.nanoTime();
+        // long start = System.nanoTime();
+        // Product found = searchAlgorithms.linearSearch(products, "SKU123");
+        // long end = System.nanoTime();
 
-        System.out.println("Linear search result: " + found);
-        System.out.println("Time: " + (end - start) + " ns");
+        // System.out.println("Linear search result: " + found);
+        // System.out.println("Time: " + (end - start) + " ns");
 
-        sortAlgorithms.bubbleSortByPopularity(products);
-        System.out.println("Sorted by Popularity (Bubble Sort):");
+        // sortAlgorithms.bubbleSortByPopularity(products);
+        // System.out.println("Sorted by Popularity (Bubble Sort):");
         products.forEach(System.out::println);
     }
 }

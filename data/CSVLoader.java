@@ -16,8 +16,8 @@ public class CSVLoader {
                 String[] data = line.split(",");
 
                 String SKU = data[0];
-                double price = Double.parseDouble(data[1]);
-                int popularity = Integer.parseInt(data[2]);
+                double price = Double.parseDouble(data[3]);
+                int popularity = Integer.parseInt(data[4]);
 
                 products.add(new Product(SKU, price, popularity));
             }
