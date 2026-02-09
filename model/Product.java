@@ -12,6 +12,7 @@ public class Product {
     }
 
     public String getSKU() { return SKU; }
+    public double getPrice() { return price; }
     public int getPopularity() { return popularity; }
 
     @Override
