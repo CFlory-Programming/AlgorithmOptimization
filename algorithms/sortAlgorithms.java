@@ -92,9 +92,52 @@ public class sortAlgorithms {
         }
     }
 
-
     public static void bubbleSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+        if (sortByPrice) {
+            int i, j, n = products.size();
+            Product temp;
+            boolean swapped;
+            for (i = 0; i < n - 1; i++) {
+                swapped = false;
+                for (j = 0; j < n - i - 1; j++) {
+                    if (ascending && products.get(j).getPrice() > products.get(j + 1).getPrice()) {
 
+                        // Swap arr[j] and arr[j+1]
+                        temp = products.get(j);
+                        products.set(j, products.get(j + 1));
+                        products.set(j + 1, temp);
+                        swapped = true;
+                    }
+                }
+
+                // If no two elements were
+                // swapped by inner loop, then break
+                if (swapped == false)
+                    break;
+            }
+        } else {
+            int i, j, n = products.size();
+            Product temp;
+            boolean swapped;
+            for (i = 0; i < n - 1; i++) {
+                swapped = false;
+                for (j = 0; j < n - i - 1; j++) {
+                    if (ascending && products.get(j).getPopularity() > products.get(j + 1).getPopularity()) {
+
+                        // Swap arr[j] and arr[j+1]
+                        temp = products.get(j);
+                        products.set(j, products.get(j + 1));
+                        products.set(j + 1, temp);
+                        swapped = true;
+                    }
+                }
+
+                // If no two elements were
+                // swapped by inner loop, then break
+                if (swapped == false)
+                    break;
+            }
+        }
     }
 
     public static void mergeSort(List<Product> products, boolean ascending, boolean sortByPrice) {
@@ -102,7 +145,7 @@ public class sortAlgorithms {
     }
 
     public static void quickSort(List<Product> products, boolean ascending, boolean sortByPrice) {
-
+        
     }
 
     public static void heapSort(List<Product> products, boolean ascending, boolean sortByPrice) {
