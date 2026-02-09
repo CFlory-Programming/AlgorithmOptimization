@@ -3,7 +3,7 @@ package algorithms;
 import java.util.List;
 import model.Product;
 
-public class sortAlgorithms {
+public class SortAlgorithms {
     public static void insertionSort(List<Product> products, boolean ascending, boolean sortByPrice) {
         if (sortByPrice) {
             for (int i = 1; i < products.size(); i++) {

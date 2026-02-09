@@ -3,7 +3,7 @@ package algorithms;
 import java.util.List;
 import model.Product;
 
-public class searchAlgorithms {
+public class SearchAlgorithms {
     public static Product linearSearch(List<Product> products, String sku) {
         for (Product product : products) {
             if (product.getSKU().equals(sku)) {

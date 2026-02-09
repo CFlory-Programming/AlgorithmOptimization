@@ -1,16 +1,17 @@
 package algorithms;
 
 public class Timer {
-
-    public static long timeSearch(Runnable search) {
+    public static long timeSearch(Runnable searchTask) {
         long start = System.nanoTime();
-        search.run();
-        return System.nanoTime() - start;
+        searchTask.run();
+        long end = System.nanoTime();
+        return end - start;
     }
 
-    public static long timeSort(Runnable sort) {
+    public static long timeSort(Runnable sortTask) {
         long start = System.nanoTime();
-        sort.run();
-        return System.nanoTime() - start;
+        sortTask.run();
+        long end = System.nanoTime();
+        return end - start;
     }
 }
