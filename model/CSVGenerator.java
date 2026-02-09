@@ -1,7 +1,9 @@
+package model;
+
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class CSVGenerator {
     public static void main(String[] args) {
         // Fill the csv with random data
         for (int i = 0; i < 100; i++) {
