@@ -222,15 +222,112 @@ public class SortAlgorithms {
         return products;
     }
 
-    public static void quickSort(List<Product> products, boolean ascending, boolean sortByPrice) {
-
+    private static int partition(List<Product> products, int low, int high, boolean ascending, boolean sortByPrice) {
+        Product pivot = products.get(high);
+        int i = low - 1;
+        
+        for (int j = low; j <= high - 1; j++) {
+            boolean shouldMove = false;
+            
+            if (sortByPrice) {
+                double pivotPrice = pivot.getPrice();
+                double currentPrice = products.get(j).getPrice();
+                shouldMove = ascending ? currentPrice < pivotPrice : currentPrice > pivotPrice;
+            } else {
+                int pivotPop = pivot.getPopularity();
+                int currentPop = products.get(j).getPopularity();
+                shouldMove = ascending ? currentPop < pivotPop : currentPop > pivotPop;
+            }
+            
+            if (shouldMove) {
+                i++;
+                swapProducts(products, i, j);
+            }
+        }
+        
+        swapProducts(products, i + 1, high);
+        return i + 1;
     }
 
-    public static void heapSort(List<Product> products, boolean ascending, boolean sortByPrice) {
-
+    private static void swapProducts(List<Product> products, int i, int j) {
+        Product temp = products.get(i);
+        products.set(i, products.get(j));
+        products.set(j, temp);
     }
 
-    public static void binaryInsertionSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+    private static void quickSortHelper(List<Product> products, int low, int high, boolean ascending, boolean sortByPrice) {
+        if (low < high) {
+            int pi = partition(products, low, high, ascending, sortByPrice);
+            quickSortHelper(products, low, pi - 1, ascending, sortByPrice);
+            quickSortHelper(products, pi + 1, high, ascending, sortByPrice);
+        }
+    }
 
+    public static List<Product> quickSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+        if (products.size() > 0) {
+            quickSortHelper(products, 0, products.size() - 1, ascending, sortByPrice);
+        }
+        return products;
+    }
+
+    private static void heapify(List<Product> products, int n, int i, boolean ascending, boolean sortByPrice) {
+        int extremeIdx = i;
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+        
+        if (sortByPrice) {
+            double extremePrice = products.get(extremeIdx).getPrice();
+            
+            if (l < n) {
+                double leftPrice = products.get(l).getPrice();
+                if ((ascending && leftPrice < extremePrice) || (!ascending && leftPrice > extremePrice)) {
+                    extremeIdx = l;
+                    extremePrice = leftPrice;
+                }
+            }
+            
+            if (r < n) {
+                double rightPrice = products.get(r).getPrice();
+                if ((ascending && rightPrice < extremePrice) || (!ascending && rightPrice > extremePrice)) {
+                    extremeIdx = r;
+                }
+            }
+        } else {
+            int extremePop = products.get(extremeIdx).getPopularity();
+            
+            if (l < n) {
+                int leftPop = products.get(l).getPopularity();
+                if ((ascending && leftPop < extremePop) || (!ascending && leftPop > extremePop)) {
+                    extremeIdx = l;
+                    extremePop = leftPop;
+                }
+            }
+            
+            if (r < n) {
+                int rightPop = products.get(r).getPopularity();
+                if ((ascending && rightPop < extremePop) || (!ascending && rightPop > extremePop)) {
+                    extremeIdx = r;
+                }
+            }
+        }
+        
+        if (extremeIdx != i) {
+            swapProducts(products, i, extremeIdx);
+            heapify(products, n, extremeIdx, ascending, sortByPrice);
+        }
+    }
+
+    public static List<Product> heapSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+        int n = products.size();
+        
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(products, n, i, ascending, sortByPrice);
+        
+        for (int i = n - 1; i > 0; i--) {
+            swapProducts(products, 0, i);
+            heapify(products, i, 0, ascending, sortByPrice);
+        }
+        
+        return products;
     }
 }
