@@ -4,7 +4,7 @@ import java.util.List;
 import model.Product;
 
 public class SortAlgorithms {
-    public static void insertionSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+    public static List<Product> insertionSort(List<Product> products, boolean ascending, boolean sortByPrice) {
         if (sortByPrice) {
             for (int i = 1; i < products.size(); i++) {
                 Product key = products.get(i);
@@ -30,9 +30,11 @@ public class SortAlgorithms {
                 products.set(j + 1, key);
             }
         }
+
+        return products;
     }
 
-    public static void selectionSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+    public static List<Product> selectionSort(List<Product> products, boolean ascending, boolean sortByPrice) {
         if (sortByPrice) {
             int n = products.size();
             for (int i = 0; i < n - 1; i++) {
@@ -90,9 +92,11 @@ public class SortAlgorithms {
                 products.set(min_idx, temp);
             }
         }
+
+        return products;
     }
 
-    public static void bubbleSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+    public static List<Product> bubbleSort(List<Product> products, boolean ascending, boolean sortByPrice) {
         if (sortByPrice) {
             int i, j, n = products.size();
             Product temp;
@@ -138,14 +142,88 @@ public class SortAlgorithms {
                     break;
             }
         }
+        return products;
     }
 
-    public static void mergeSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+    private static void merge(List<Product> products, int l, int m, int r, boolean ascending, boolean sortByPrice) {
+        // Find sizes of two subarrays to be merged
+        int n1 = m - l + 1;
+        int n2 = r - m;
 
+        // Create temp lists
+        List<Product> L = new java.util.ArrayList<>();
+        List<Product> R = new java.util.ArrayList<>();
+
+        // Copy data to temp lists
+        for (int i = 0; i < n1; i++)
+            L.add(products.get(l + i));
+        for (int j = 0; j < n2; j++)
+            R.add(products.get(m + 1 + j));
+
+        // Merge the temp lists
+        int i = 0, j = 0, k = l;
+        
+        while (i < n1 && j < n2) {
+            boolean shouldTakeLeft = false;
+            
+            if (sortByPrice) {
+                double leftPrice = L.get(i).getPrice();
+                double rightPrice = R.get(j).getPrice();
+                shouldTakeLeft = ascending ? leftPrice <= rightPrice : leftPrice >= rightPrice;
+            } else {
+                int leftPop = L.get(i).getPopularity();
+                int rightPop = R.get(j).getPopularity();
+                shouldTakeLeft = ascending ? leftPop <= rightPop : leftPop >= rightPop;
+            }
+            
+            if (shouldTakeLeft) {
+                products.set(k, L.get(i));
+                i++;
+            } else {
+                products.set(k, R.get(j));
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of L[] if any
+        while (i < n1) {
+            products.set(k, L.get(i));
+            i++;
+            k++;
+        }
+
+        // Copy remaining elements of R[] if any
+        while (j < n2) {
+            products.set(k, R.get(j));
+            j++;
+            k++;
+        }
+    }
+
+    private static void mergeSortHelper(List<Product> products, int l, int r, boolean ascending, boolean sortByPrice) {
+        if (l < r) {
+            // Find the middle point
+            int m = l + (r - l) / 2;
+
+            // Sort first and second halves
+            mergeSortHelper(products, l, m, ascending, sortByPrice);
+            mergeSortHelper(products, m + 1, r, ascending, sortByPrice);
+
+            // Merge the sorted halves
+            merge(products, l, m, r, ascending, sortByPrice);
+        }
+    }
+
+    public static List<Product> mergeSort(List<Product> products, boolean ascending, boolean sortByPrice) {
+        if (products.size() > 0) {
+            mergeSortHelper(products, 0, products.size() - 1, ascending, sortByPrice);
+        }
+        return products;
     }
 
     public static void quickSort(List<Product> products, boolean ascending, boolean sortByPrice) {
-        
+
     }
 
     public static void heapSort(List<Product> products, boolean ascending, boolean sortByPrice) {
