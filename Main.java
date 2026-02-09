@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 import data.CSVLoader;
 import model.Product;
@@ -35,9 +40,35 @@ public class Main {
 
         // ----- SORT TESTS -----
 
-        long insertTime = Timer.timeSort(() ->
-                SortAlgorithms.insertionSort(products, true, false)
-        );
+        long insertTime = Timer.timeSort(() -> {
+            List<Product> sortedProducts = SortAlgorithms.insertionSort(products, true, false);
+            
+                         // Write to csv file
+            try (FileWriter writer = new FileWriter("products.csv", true)) {
+                // Clear csv file before writing
+                if (i == 0) {
+                    new PrintWriter("products.csv").close();
+
+                    // Categories
+                    writer.append("sku,productName,category,price,unitsSold,inStock");
+                    writer.append("\n");
+                }
+                    writer.append(sku);
+                    writer.append(",");
+                    writer.append(productName);
+                    writer.append(",");
+                    writer.append(productCategory);
+                    writer.append(",");
+                    writer.append(String.format("%.2f", new Random().nextDouble(100) + 1)); // price with two decimals
+                    writer.append(",");
+                    writer.append(String.valueOf(new Random().nextInt(1000) + 1)); // unitsSold
+                    writer.append(",");
+                    writer.append(String.valueOf(new Random().nextInt(6) > 0)); // inStock
+                    writer.append("\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         long mergeTime = Timer.timeSort(() ->
                 SortAlgorithms.selectionSort(products, true, false)
