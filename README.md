@@ -5,7 +5,7 @@
 
 ### Big-O mapping
 Algorithm	| Observed Behavior |	Big-O	| Evidence / Notes
---- | --- | ---
+--- | --- | --- | ---
 Linear Search | 1 | 1 | 1
 Binary Search | 1 | 1 | 1
 Insertion Sort | 1 | 1 | 1
