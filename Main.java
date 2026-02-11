@@ -19,7 +19,7 @@ public class Main {
         );
 
         long binaryTime = Timer.timeSearch(() ->
-                SearchAlgorithms.binarySearch(products, "17284A69")
+                SearchAlgorithms.binarySearch(SortAlgorithms.mergeSort(products, true, true), 5.22, true)
         );
 
         System.out.println("Linear Search Time: " + linearTime + " ns");
