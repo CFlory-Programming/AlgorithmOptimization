@@ -18,7 +18,7 @@ Binary Insertion Sort | 1 | O(n * log n) | 1
 
 ### 3. Recommendations (Scenario-Based)
 
-* Which search algorithm is best?
+1. Which search algorithm is best?
 ....* The best search algorithm is linear search.
 
 * Which sort algorithm is best?
