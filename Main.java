@@ -13,17 +13,17 @@ public class Main {
 
         List<Product> products = CSVLoader.loadProducts("data/productsMediumRandom.csv");
 
-        // // ----- SEARCH TESTS -----
-        // long linearTime = Timer.timeSearch(() ->
-        //         SearchAlgorithms.linearSearch(products, "SKU1003")
-        // );
+        // ----- SEARCH TESTS -----
+        long linearTime = Timer.timeSearch(() ->
+                SearchAlgorithms.linearSearch(products, "17284A69")
+        );
 
-        // long binaryTime = Timer.timeSearch(() ->
-        //         SearchAlgorithms.binarySearch(products, "SKU1003")
-        // );
+        long binaryTime = Timer.timeSearch(() ->
+                SearchAlgorithms.binarySearch(products, "17284A69")
+        );
 
-        // System.out.println("Linear Search Time: " + linearTime + " ns");
-        // System.out.println("Binary Search Time: " + binaryTime + " ns");
+        System.out.println("Linear Search Time: " + linearTime + " ns");
+        System.out.println("Binary Search Time: " + binaryTime + " ns");
 
         // ----- SORT TESTS -----
 
