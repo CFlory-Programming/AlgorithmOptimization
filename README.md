@@ -6,12 +6,12 @@
 ### Big-O mapping
 Algorithm	| Observed Behavior |	Big-O	| Evidence / Notes
 --- | --- | ---
-Linear Search | | | 
-Binary Search | | | 
-Insertion Sort | | | 
-Selection Sort | | | 
-Bubble Sort | | | 
-Merge Sort | | | 
-Quick Sort | | | 
-Heap Sort | | | 
-Binary Insertion Sort | | | 
+Linear Search | 1 | 1 | 1
+Binary Search | 1 | 1 | 1
+Insertion Sort | 1 | 1 | 1
+Selection Sort | 1 | 1 | 1
+Bubble Sort | 1 | 1 | 1
+Merge Sort | 1 | 1 | 1
+Quick Sort | 1 | 1 | 1
+Heap Sort | 1 | 1 | 1
+Binary Insertion Sort | 1 | 1 | 1
