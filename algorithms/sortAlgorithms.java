@@ -51,10 +51,6 @@ public class SortAlgorithms {
                     } else if (!ascending && products.get(j).getPrice() > products.get(min_idx).getPrice()) {
                         min_idx = j;
                     }
-
-                    // Update min_idx if a smaller element
-                    // is found
-                    min_idx = j;
                 }
 
                 // Move minimum element to its
@@ -79,10 +75,6 @@ public class SortAlgorithms {
                     } else if (!ascending && products.get(j).getPopularity() > products.get(min_idx).getPopularity()) {
                         min_idx = j;
                     }
-
-                    // Update min_idx if a smaller element
-                    // is found
-                    min_idx = j;
                 }
 
                 // Move minimum element to its
@@ -162,10 +154,10 @@ public class SortAlgorithms {
 
         // Merge the temp lists
         int i = 0, j = 0, k = l;
-        
+
         while (i < n1 && j < n2) {
             boolean shouldTakeLeft = false;
-            
+
             if (sortByPrice) {
                 double leftPrice = L.get(i).getPrice();
                 double rightPrice = R.get(j).getPrice();
@@ -175,7 +167,7 @@ public class SortAlgorithms {
                 int rightPop = R.get(j).getPopularity();
                 shouldTakeLeft = ascending ? leftPop <= rightPop : leftPop >= rightPop;
             }
-            
+
             if (shouldTakeLeft) {
                 products.set(k, L.get(i));
                 i++;
@@ -225,10 +217,10 @@ public class SortAlgorithms {
     private static int partition(List<Product> products, int low, int high, boolean ascending, boolean sortByPrice) {
         Product pivot = products.get(high);
         int i = low - 1;
-        
+
         for (int j = low; j <= high - 1; j++) {
             boolean shouldMove = false;
-            
+
             if (sortByPrice) {
                 double pivotPrice = pivot.getPrice();
                 double currentPrice = products.get(j).getPrice();
@@ -238,13 +230,13 @@ public class SortAlgorithms {
                 int currentPop = products.get(j).getPopularity();
                 shouldMove = ascending ? currentPop < pivotPop : currentPop > pivotPop;
             }
-            
+
             if (shouldMove) {
                 i++;
                 swapProducts(products, i, j);
             }
         }
-        
+
         swapProducts(products, i + 1, high);
         return i + 1;
     }
@@ -255,7 +247,8 @@ public class SortAlgorithms {
         products.set(j, temp);
     }
 
-    private static void quickSortHelper(List<Product> products, int low, int high, boolean ascending, boolean sortByPrice) {
+    private static void quickSortHelper(List<Product> products, int low, int high, boolean ascending,
+            boolean sortByPrice) {
         if (low < high) {
             int pi = partition(products, low, high, ascending, sortByPrice);
             quickSortHelper(products, low, pi - 1, ascending, sortByPrice);
@@ -274,43 +267,43 @@ public class SortAlgorithms {
         int extremeIdx = i;
         int l = 2 * i + 1;
         int r = 2 * i + 2;
-        
+
         if (sortByPrice) {
-            double extremePrice = products.get(extremeIdx).getPrice();
-            
+            double extreme = products.get(extremeIdx).getPrice();
+
             if (l < n) {
-                double leftPrice = products.get(l).getPrice();
-                if ((ascending && leftPrice < extremePrice) || (!ascending && leftPrice > extremePrice)) {
+                double left = products.get(l).getPrice();
+                if ((ascending && left > extreme) || (!ascending && left < extreme)) {
                     extremeIdx = l;
-                    extremePrice = leftPrice;
+                    extreme = left;
                 }
             }
-            
+
             if (r < n) {
-                double rightPrice = products.get(r).getPrice();
-                if ((ascending && rightPrice < extremePrice) || (!ascending && rightPrice > extremePrice)) {
+                double right = products.get(r).getPrice();
+                if ((ascending && right > extreme) || (!ascending && right < extreme)) {
                     extremeIdx = r;
                 }
             }
         } else {
-            int extremePop = products.get(extremeIdx).getPopularity();
-            
+            int extreme = products.get(extremeIdx).getPopularity();
+
             if (l < n) {
-                int leftPop = products.get(l).getPopularity();
-                if ((ascending && leftPop < extremePop) || (!ascending && leftPop > extremePop)) {
+                int left = products.get(l).getPopularity();
+                if ((ascending && left > extreme) || (!ascending && left < extreme)) {
                     extremeIdx = l;
-                    extremePop = leftPop;
+                    extreme = left;
                 }
             }
-            
+
             if (r < n) {
-                int rightPop = products.get(r).getPopularity();
-                if ((ascending && rightPop < extremePop) || (!ascending && rightPop > extremePop)) {
+                int right = products.get(r).getPopularity();
+                if ((ascending && right > extreme) || (!ascending && right < extreme)) {
                     extremeIdx = r;
                 }
             }
         }
-        
+
         if (extremeIdx != i) {
             swapProducts(products, i, extremeIdx);
             heapify(products, n, extremeIdx, ascending, sortByPrice);
@@ -319,15 +312,15 @@ public class SortAlgorithms {
 
     public static List<Product> heapSort(List<Product> products, boolean ascending, boolean sortByPrice) {
         int n = products.size();
-        
+
         for (int i = n / 2 - 1; i >= 0; i--)
             heapify(products, n, i, ascending, sortByPrice);
-        
+
         for (int i = n - 1; i > 0; i--) {
             swapProducts(products, 0, i);
             heapify(products, i, 0, ascending, sortByPrice);
         }
-        
+
         return products;
     }
 }
