@@ -16,15 +16,18 @@ Quick Sort | 1 | O(n * log n) | 1
 Heap Sort | 1 | O(n * log n) | 1
 Binary Insertion Sort | 1 | O(n * log n) | 1
 
-### Recommendations (Scenario-Based)
+### 3. Recommendations (Scenario-Based)
 
 * Which search algorithm is best?
+- The best search algorithm is linear search.
 
 * Which sort algorithm is best?
+- The best sort algorithm is binary insertion sort for us.
 
 * Justify using observations and Big-O reasoning
+- The linear search algorithm uses linear time O(n), or as the data increases, the steps increase linearly. The binary insertion sort algorithm uses quasilinear time O(n log n). The binary insertion sort has a similar time complexity to the other quasilinear time algorithms, such as merge sort, quick sort, and heap sort.
 
-### Reflection
+### 4. Reflection
 
 * What surprised you most?
  - What surprised me most was that even for the largest data set, linear search was still faster than binary search in our data, even though the time complexity says otherwise. I would assume that the data we were searching for was just in a location that was difficult to find with a binary search.
