@@ -3,7 +3,6 @@
 ### Oberved Performance
 [Link to Data](https://docs.google.com/spreadsheets/d/131lV4ZxYJfqi2vfX5j09Ra4F8IByvEtQokCkKtVR3EA/edit?gid=0#gid=0)
 
-
 ### Big-O mapping
 Algorithm	| Observed Behavior |	Big-O	| Evidence / Notes
 --- | --- | --- | ---
@@ -16,3 +15,22 @@ Merge Sort | 1 | O(n * log n) | 1
 Quick Sort | 1 | O(n * log n) | 1
 Heap Sort | 1 | O(n * log n) | 1
 Binary Insertion Sort | 1 | O(n<sup>2</sup>) | 1
+
+### Recommendations (Scenario-Based)
+
+* Which search algorithm is best?
+
+* Which sort algorithm is best?
+
+* Justify using observations and Big-O reasoning
+
+### Reflection
+
+* What surprised you most?
+
+* Tradeoffs between simplicity vs performance
+
+* Dataset size impact
+
+* Anything you would change for real-world usage
+
