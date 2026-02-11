@@ -97,6 +97,6 @@ public class Main {
         System.out.println("Quick Sort Time: " + quickSortTime + " ns");
         System.out.println("Heap Sort Time: " + heapSortTime + " ns");
         System.out.println("Binary Insertion Sort Time: " + binaryInsertionSortTime + " ns");
-        // Selection, insertion, bubble, merge, quick, heap
+        // Selection, insertion, bubble, merge, quick, heap, binary insertion
     }
 }
