@@ -14,7 +14,7 @@ Bubble Sort | 1 | O(n<sup>2</sup>) | 1
 Merge Sort | 1 | O(n * log n) | 1
 Quick Sort | 1 | O(n * log n) | 1
 Heap Sort | 1 | O(n * log n) | 1
-Binary Insertion Sort | 1 | O(n<sup>2</sup>) | 1
+Binary Insertion Sort | 1 | O(n * log n) | 1
 
 ### Recommendations (Scenario-Based)
 
