@@ -1,5 +1,6 @@
 package algorithms;
 
+import java.util.Arrays;
 import java.util.List;
 import model.Product;
 
@@ -319,6 +320,73 @@ public class SortAlgorithms {
         for (int i = n - 1; i > 0; i--) {
             swapProducts(products, 0, i);
             heapify(products, i, 0, ascending, sortByPrice);
+        }
+
+        return products;
+    }
+
+    // binary search to find insertion location for a Product
+    static int binarySearch(List<Product> products, Product item, int low, int high, boolean ascending,
+            boolean sortByPrice) {
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (sortByPrice) {
+                double midVal = products.get(mid).getPrice();
+                double itemVal = item.getPrice();
+                if (itemVal == midVal)
+                    return mid + 1;
+                if (ascending) {
+                    if (itemVal > midVal)
+                        low = mid + 1;
+                    else
+                        high = mid - 1;
+                } else {
+                    if (itemVal > midVal)
+                        high = mid - 1;
+                    else
+                        low = mid + 1;
+                }
+            } else {
+                int midVal = products.get(mid).getPopularity();
+                int itemVal = item.getPopularity();
+                if (itemVal == midVal)
+                    return mid + 1;
+                if (ascending) {
+                    if (itemVal > midVal)
+                        low = mid + 1;
+                    else
+                        high = mid - 1;
+                } else {
+                    if (itemVal > midVal)
+                        high = mid - 1;
+                    else
+                        low = mid + 1;
+                }
+            }
+        }
+
+        return low;
+    }
+
+    // Binary-insertion sort for Product lists
+    public static List<Product> insertionBinarySort(List<Product> products, boolean ascending,
+            boolean sortByPrice) {
+        int n = products.size();
+
+        for (int i = 1; i < n; ++i) {
+            int j = i - 1;
+            Product selected = products.get(i);
+
+            // find location where selected should be inserted
+            int loc = binarySearch(products, selected, 0, j, ascending, sortByPrice);
+
+            // Move all elements after location to create space
+            while (j >= loc) {
+                products.set(j + 1, products.get(j));
+                j--;
+            }
+            products.set(j + 1, selected);
         }
 
         return products;

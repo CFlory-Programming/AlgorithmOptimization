@@ -81,14 +81,14 @@ public class Main {
             }
         });
 
-        // long binaryInsertionSortTime = Timer.timeSort(() -> {
-        //     List<Product> sorted = SortAlgorithms.binaryInsertionSort(products, true, false);
-        //     try (PrintWriter writer = new PrintWriter(new FileWriter("data/productsBinaryInsert.csv"))) {
-        //         sorted.forEach(writer::println);
-        //     } catch (IOException e) {
-        //         e.printStackTrace();
-        //     }
-        // });
+        long binaryInsertionSortTime = Timer.timeSort(() -> {
+            List<Product> sorted = SortAlgorithms.insertionBinarySort(products, true, false);
+            try (PrintWriter writer = new PrintWriter(new FileWriter("data/productsBinaryInsert.csv"))) {
+                sorted.forEach(writer::println);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         System.out.println("Insertion Sort Time: " + insertTime + " ns");
         System.out.println("Selection Sort Time: " + mergeTime + " ns");
@@ -96,7 +96,7 @@ public class Main {
         System.out.println("Merge Sort Time: " + mergeSortTime + " ns");
         System.out.println("Quick Sort Time: " + quickSortTime + " ns");
         System.out.println("Heap Sort Time: " + heapSortTime + " ns");
-        // System.out.println("Binary Insertion Sort Time: " + binaryInsertionSortTime + " ns");
+        System.out.println("Binary Insertion Sort Time: " + binaryInsertionSortTime + " ns");
         // Selection, insertion, bubble, merge, quick, heap
     }
 }
