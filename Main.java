@@ -18,8 +18,10 @@ public class Main {
                 SearchAlgorithms.linearSearch(products, "17284A69")
         );
 
+        List<Product> temp = SortAlgorithms.mergeSort(products, true, true);
+
         long binaryTime = Timer.timeSearch(() ->
-                SearchAlgorithms.binarySearch(SortAlgorithms.mergeSort(products, true, true), 5.22, true)
+                SearchAlgorithms.binarySearch(temp, 5.22, true)
         );
 
         System.out.println("Linear Search Time: " + linearTime + " ns");
