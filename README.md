@@ -6,15 +6,15 @@
 ### Big-O mapping
 Algorithm	| Observed Behavior |	Big-O	| Evidence / Notes
 --- | --- | --- | ---
-Linear Search | 1 | O(n) | 1
-Binary Search | 1 | O(log n) | 1
-Insertion Sort | 1 | O(n<sup>2</sup>) | 1
-Selection Sort | 1 | O(n<sup>2</sup>) | 1
-Bubble Sort | 1 | O(n<sup>2</sup>) | 1
-Merge Sort | 1 | O(n x log n) | 1
-Quick Sort | 1 | O(n x log n) | 1
-Heap Sort | 1 | O(n x log n) | 1
-Binary Insertion Sort | 1 | O(n x log n) | 1
+Linear Search | Time increased linearly | O(n) | 1,768,125 ns
+Binary Search | Time increased slowly | O(log n) | 8,774,083 ns
+Insertion Sort | Time increased exponentially | O(n<sup>2</sup>) | 137,351,333 ns
+Selection Sort | Time increased exponentially | O(n<sup>2</sup>) | 139,900,417 ns
+Bubble Sort | Time increased exponentially | O(n<sup>2</sup>) | 6,579,625 ns
+Merge Sort | Time increased slowly | O(n x log n) | 23,645,458 ns
+Quick Sort | Time increased slowly | O(n x log n) | 61,886,250 ns
+Heap Sort | Time increased slowly | O(n x log n) | 8,086,709 ns
+Binary Insertion Sort | Time increased slowly | O(n x log n) | 5,773,333 ns
 
 ### 3. Recommendations (Scenario-Based)
 
